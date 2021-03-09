@@ -1,0 +1,75 @@
+body {
+  background-color: black;
+  margin: 0;
+  font-size: 0;
+}
+
+.brick {
+  background-image: url("img/purple-brick.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.row div {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.coin {
+  background-image: url("img/bounce-coin.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.cherry {
+  background-image: url("img/cherry.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#pacman {
+  background-image: url("img/pacman.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
+.container {
+  position: absolute;
+}
+
+.board {
+  margin: 0;
+  position: absolute;
+  top: 0px;
+  left: 415px;
+}
+
+.score {
+  color: white;
+  font-size: 25px;
+}
+
+#congrats {
+  position: absolute;
+  top: 90px;
+  left: 415px;
+}
+.yellow-text {
+  font-size: 30px;
+  color: yellow;
+}
+.text-center {
+  text-align: center;
+}
+.red-text {
+  margin: 0;
+  font-size: 30px;
+  color: red;
+}
