@@ -175,12 +175,14 @@ function showPacman() {
   document.getElementById("pacman").style.transform = `rotate(${direction}deg)`;
 }
 setInterval(() => {
-  moveGhost(inky, "inky");
-}, 700);
+  if (!gameOver) {
+    moveGhost(inky, "inky");
+  }
+}, 500);
 
 setInterval(() => {
   moveGhost(mika, "mika");
-}, 450);
+}, 300);
 
 const moveGhost = (ghostName, ghostString) => {
   // pacman is above the ghost
