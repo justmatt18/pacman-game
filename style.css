@@ -40,6 +40,26 @@ body {
   position: absolute;
 }
 
+#inky {
+  background-image: url("img/inky-ghost.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
+#mika {
+  background-image: url("img/mika-ghost.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
 .container {
   position: absolute;
   margin-top: 40vh;
