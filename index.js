@@ -96,12 +96,20 @@ let worlds = [
   },
 ];
 
-let worldNumber = getRandomNumber(5);
+let brickColors = [
+  "purple-brick",
+  "red-brick",
+  "blue-brick",
+  "green-brick",
+  "yellow-brick",
+];
+
+let num = getRandomNumber(5);
 
 // destructure world[]
-let { world } = worlds[worldNumber];
+let { world } = worlds[num];
 // destructure for easy call
-let { cx, cy } = worlds[worldNumber].cherryPosition;
+let { cx, cy } = worlds[num].cherryPosition;
 
 // ghost object
 let ghosts = {
@@ -116,7 +124,7 @@ let ghosts = {
     gy: 8,
   },
 };
-//destructure inky
+//destructure ghosts
 let { inky, mika } = ghosts;
 let gameOver = false;
 let pacman = {
@@ -147,13 +155,13 @@ function countCoins(arr) {
 }
 
 function displayWorld() {
-  // check first if ghost and pacman collide
+  let color = brickColors[num];
   let output = "";
   for (let i = 0; i < world.length; i++) {
     output += "\n<div class='row'>\n";
     for (let j = 0; j < world[i].length; j++) {
       if (world[i][j] == 2) {
-        output += "<div id='brick' class='brick'></div>";
+        output += `<div id='brick' class="${color}"></div>`;
       } else if (world[i][j] == 1) {
         output += "<div class='coin'></div>";
       } else if (world[i][j] == 0) {
@@ -244,7 +252,7 @@ const moveGhost = (ghostName, ghostString) => {
     }
   }
 
-  showInky(ghostName, ghostString);
+  showGhost(ghostName, ghostString);
   if (px == ghostName.gx && py == ghostName.gy) {
     //GAME OVER
     gameOver = true;
@@ -252,7 +260,7 @@ const moveGhost = (ghostName, ghostString) => {
   }
 };
 
-function showInky(ghostName, ghostString) {
+function showGhost(ghostName, ghostString) {
   document.getElementById(`${ghostString}`).style.left =
     ghostName.gx * 20 + "px";
   document.getElementById(`${ghostString}`).style.top =
@@ -265,8 +273,8 @@ function showScore() {
 
 displayWorld();
 showPacman();
-showInky(inky, "inky");
-showInky(mika, "mika");
+showGhost(inky, "inky");
+showGhost(mika, "mika");
 showCherry(cy, cx);
 
 function showCherry(cy, cx) {
@@ -279,7 +287,6 @@ function showCherry(cy, cx) {
 
 document.onkeydown = function (e) {
   if (!gameOver) {
-    setTimeout(() => {}, 500);
     if (e.key == "ArrowLeft" && world[py][px - 1] != 2) {
       // LEFT
       direction = 0;

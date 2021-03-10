@@ -34,7 +34,7 @@ const moveGhost = () => {
       inky.gx += 1;
     }
   } else if (inky.gy == py && inky.gx > px) {
-    //pacman and ghost same level but ghost X > Pacman X
+    //pacman and ghost same level but ghost X (right side) > Pacman X (left side)
     console.log("Hi");
     if (world[inky.gy][inky.gx - 1] != 2 && inky.gx - 1 >= 1) {
       //left
@@ -44,7 +44,7 @@ const moveGhost = () => {
       inky.gy -= 1;
     }
   } else if (inky.gy == py && inky.gx < px) {
-    // pacman and ghost same level but ghost X < Pacman X
+    // pacman and ghost same level but ghost X (left side) < Pacman X (right side)
     if (world[inky.gy][inky.gx + 1] != 2 && inky.gx + 1 <= 18) {
       //right
       inky.gx += 1;
@@ -53,6 +53,4 @@ const moveGhost = () => {
       inky.gy += 1;
     }
   }
-
-  showGhost();
 };

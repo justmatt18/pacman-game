@@ -4,8 +4,36 @@ body {
   font-size: 0;
 }
 
-.brick {
+.purple-brick {
   background-image: url("img/purple-brick.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.red-brick {
+  background-image: url("img/red-brick.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.yellow-brick {
+  background-image: url("img/yellow-brick.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.green-brick {
+  background-image: url("img/green-brick.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.blue-brick {
+  background-image: url("img/blue-brick.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
