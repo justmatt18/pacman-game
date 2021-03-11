@@ -189,7 +189,9 @@ setInterval(() => {
 }, 500);
 
 setInterval(() => {
-  moveGhost(mika, "mika");
+  if (!gameOver) {
+    moveGhost(mika, "mika");
+  }
 }, 300);
 
 const moveGhost = (ghostName, ghostString) => {
