@@ -22,7 +22,7 @@ let worlds = [
     // 2
     world: [
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-      [2, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 0, 2],
+      [2, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 2],
       [2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 0, 2, 0, 2],
       [2, 1, 1, 1, 2, 1, 1, 2, 1, 0, 1, 0, 2, 1, 2, 2, 1, 2, 1, 2],
       [2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 1, 0, 1, 1, 0, 1, 0, 2],
@@ -60,7 +60,7 @@ let worlds = [
     // 4
     world: [
       [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-      [2, 0, 1, 1, 1, 1, 1, 1, 0, 2, 0, 0, 1, 1, 1, 1, 2, 2, 0, 2],
+      [2, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2],
       [2, 1, 2, 2, 0, 2, 2, 2, 1, 2, 0, 2, 2, 2, 2, 1, 2, 1, 1, 2],
       [2, 1, 0, 2, 1, 1, 2, 0, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 1, 2],
       [2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 0, 2, 1, 0, 2, 1, 0, 2, 1, 2],
@@ -194,7 +194,7 @@ setInterval(() => {
   }
 }, 300);
 
-const moveGhost = (ghostName, ghostString) => {
+function moveGhost(ghostName, ghostString) {
   // pacman is above the ghost
   if (ghostName.gy > py) {
     if (world[ghostName.gy - 1][ghostName.gx] != 2 && ghostName.gy - 1 >= 1) {
@@ -260,7 +260,7 @@ const moveGhost = (ghostName, ghostString) => {
     gameOver = true;
     document.getElementById("game-over").innerHTML = "GAME OVER!! ";
   }
-};
+}
 
 function showGhost(ghostName, ghostString) {
   document.getElementById(`${ghostString}`).style.left =
