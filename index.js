@@ -1,4 +1,4 @@
-let worlds = [
+var worlds = [
   {
     //1
     world: [
@@ -96,7 +96,7 @@ let worlds = [
   },
 ];
 
-let brickColors = [
+var brickColors = [
   "purple-brick",
   "red-brick",
   "blue-brick",
@@ -104,15 +104,24 @@ let brickColors = [
   "yellow-brick",
 ];
 
-let num = getRandomNumber(5);
+var sounds = {
+  die: "die.mp3",
+  coins: "eat-coins.mp3",
+  cherry: "eat-cherry.mp3",
+  start: "start.mp3",
+};
+
+playSound(sounds.start);
+
+var num = getRandomNumber(5);
 
 // destructure world[]
-let { world } = worlds[num];
+var { world } = worlds[num];
 // destructure for easy call
-let { cx, cy } = worlds[num].cherryPosition;
+var { cx, cy } = worlds[num].cherryPosition;
 
 // ghost object
-let ghosts = {
+var ghosts = {
   inky: {
     img: "inky-ghost.gif",
     gx: 18, //ghost x pos
@@ -125,17 +134,17 @@ let ghosts = {
   },
 };
 //destructure ghosts
-let { inky, mika } = ghosts;
-let gameOver = false;
-let pacman = {
+var { inky, mika } = ghosts;
+var gameOver = false;
+var pacman = {
   px: 1,
   py: 1,
 };
-let { px, py } = pacman;
-let direction = 180;
-let score = 0;
-let cherryCount = 0;
-let coinsCount = countCoins(world);
+var { px, py } = pacman;
+var direction = 180;
+var score = 0;
+var cherryCount = 0;
+var coinsCount = countCoins(world);
 
 // functions ---
 
@@ -145,9 +154,9 @@ function getRandomNumber(max) {
 
 //Count Coins in the Maze
 function countCoins(arr) {
-  let count = 0;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
+  var count = 0;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr[i].length; j++) {
       if (arr[i][j] == 1) count += 1;
     }
   }
@@ -155,11 +164,11 @@ function countCoins(arr) {
 }
 
 function displayWorld() {
-  let color = brickColors[num];
-  let output = "";
-  for (let i = 0; i < world.length; i++) {
+  var color = brickColors[num];
+  var output = "";
+  for (var i = 0; i < world.length; i++) {
     output += "\n<div class='row'>\n";
-    for (let j = 0; j < world[i].length; j++) {
+    for (var j = 0; j < world[i].length; j++) {
       if (world[i][j] == 2) {
         output += `<div id='brick' class="${color}"></div>`;
       } else if (world[i][j] == 1) {
@@ -174,6 +183,8 @@ function displayWorld() {
   }
   document.getElementById("world").innerHTML = output;
   if (coinsCount == 0 && cherryCount == 0) {
+    gameOver = true;
+
     document.getElementById("game-over").innerHTML = "GAME OVER!! ";
   }
 }
@@ -191,6 +202,8 @@ setInterval(() => {
 setInterval(() => {
   if (!gameOver) {
     moveGhost(mika, "mika");
+  } else {
+    clearInterval();
   }
 }, 300);
 
@@ -258,6 +271,7 @@ function moveGhost(ghostName, ghostString) {
   if (px == ghostName.gx && py == ghostName.gy) {
     //GAME OVER
     gameOver = true;
+    playSound(sounds.die);
     document.getElementById("game-over").innerHTML = "GAME OVER!! ";
   }
 }
@@ -314,14 +328,23 @@ document.onkeydown = function (e) {
   if (world[py][px] == 1) {
     world[py][px] = 0;
     score += 5;
+    if (score % 15 == 0) {
+      playSound(sounds.coins);
+    }
     coinsCount--;
     displayWorld();
     showScore();
   } else if (world[py][px] == 5) {
     world[py][px] = 0;
     score += 20;
+    playSound(sounds.cherry);
     cherryCount = 0;
     displayWorld();
     showScore();
   }
 };
+
+function playSound(path) {
+  var audio = new Audio(path);
+  audio.play();
+}
